@@ -365,12 +365,12 @@ public class ADDSUBJECT extends javax.swing.JFrame {
  
     public static void parseEmployeeObject(JSONObject employee) 
     {
-        //Get employee object within list
+      
         JSONObject employeeObject = (JSONObject) employee;
          
-        //Get employee first name
+      
             String Name = (String) employeeObject.get("Username"); 
-//             TextTeacher.setText(Name);
+
 
         arrayTecher.add(Name);
         System.out.println(Name);
@@ -414,6 +414,8 @@ public class ADDSUBJECT extends javax.swing.JFrame {
     }//GEN-LAST:event_addTeachreActionPerformed
 
     private void kGradientPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel3MouseClicked
+            arrayTecher.removeAll(arrayTecher);
+            arrayStedent.removeAll(arrayStedent);
         HOME h = new HOME();
          h.show();
          dispose();
@@ -453,20 +455,29 @@ public class ADDSUBJECT extends javax.swing.JFrame {
                             g.put("StudentSubbject", oldStydunt);
                             array1.set(i, g);
                             Subjectarray.put("Subbject", array1);
+                            JOptionPane.showMessageDialog(null, "Saved");
                             System.out.println("loop 1");
                             break;
                          }
                         else if (lastIndex==i){
-                            Sutdenttarray.add(addStudent.getText());
-                                obj1.put("Subbject1", addSubject.getText());
-                                obj1.put("TeacherSubbject", addTeachre.getText());
-                                obj1.put("StudentSubbject", Sutdenttarray);
+                                   int len =  (addSubject.getText()).length();
+                                    if(len == 0){
+                                            JOptionPane.showMessageDialog(null, "pleas add subject");
+                                            break;
+                                    }
+                                    else{
+                                        Sutdenttarray.add(addStudent.getText());
+                                            obj1.put("Subbject1", addSubject.getText());
+                                            obj1.put("TeacherSubbject", addTeachre.getText());
+                                            obj1.put("StudentSubbject", Sutdenttarray);
 
-                                      array1.add(obj1);
+                                                  array1.add(obj1);
 
-                                Subjectarray.put("Subbject", array1);
-                                 System.out.println("loop 2");
-                                 break;
+                                            Subjectarray.put("Subbject", array1);
+                                            JOptionPane.showMessageDialog(null, "Saved");
+                                             System.out.println("loop 2");
+                                             break;
+                                    }
                         }
            }
             
@@ -490,7 +501,7 @@ public class ADDSUBJECT extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "JSON Error 2");
        }
        
-        JOptionPane.showMessageDialog(null, "Saved");
+        
     }//GEN-LAST:event_kGradientPanel2MouseClicked
 
     

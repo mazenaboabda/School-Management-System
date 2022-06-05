@@ -219,7 +219,7 @@ public class ADDSTUDENT extends javax.swing.JFrame {
 
     private void kGradientPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel2MouseClicked
            // object from the student class
-         Student student1 = new Student(Integer.parseInt(ID.getText()), cBox.getSelectedItem().toString(), Name.getText());
+         
         
          
        JSONObject obj1 = new JSONObject();
@@ -228,36 +228,43 @@ public class ADDSTUDENT extends javax.swing.JFrame {
        JSONParser  jp = new JSONParser();
        try
        {
-       FileReader file = new FileReader("JsonFile.json");
+        
+            FileReader file = new FileReader("JsonFile.json");
             Employeearray=(JSONObject)jp.parse(file);
             studentarray = (JSONArray) Employeearray.get("student");
+            Student student1 = new Student(Integer.parseInt(ID.getText()), cBox.getSelectedItem().toString(), Name.getText());
        }
        catch(Exception ex)
        {
            JOptionPane.showMessageDialog(null, "JSON Error 1");
        }
+       int a = Name.getText().length();
+       int b = ID.getText().length();
        
-//       Employee user1 = new Employee(name.getText(), address.getText(), phone.getText(), email.getText(), pass.getText());
-      
-       obj1.put("id", ID.getText());
-       obj1.put("Name", Name.getText());
-       obj1.put("level", cBox.getSelectedItem().toString());
-//       JSONObject employeeObject2 = new JSONObject(); 
-          studentarray.add(obj1);
-//       employeeObject2.put("student", studentarray);
-          Employeearray.put("student", studentarray);
-       try{
-            FileWriter file = new FileWriter("JsonFile.json");
-//            file.write(employeeObject2.toJSONString());
-            file.write(Employeearray.toJSONString());
-            file.close();
-           }
-       catch(Exception ex)
-       {
-           JOptionPane.showMessageDialog(null, "JSON Error 2");
-       }
-       
-        JOptionPane.showMessageDialog(null, "Data saved");
+        if(a==0 || b==0){
+                JOptionPane.showMessageDialog(null, "please ADD a student");
+        }
+        else{
+                obj1.put("id", ID.getText());
+                obj1.put("Name", Name.getText());
+                obj1.put("level", cBox.getSelectedItem().toString());
+                studentarray.add(obj1);
+
+                Employeearray.put("student", studentarray);
+                try{
+                     FileWriter file = new FileWriter("JsonFile.json");
+
+                     file.write(Employeearray.toJSONString());
+                     file.close();
+                    }
+                catch(Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null, "JSON Error 2");
+                }
+
+                 JOptionPane.showMessageDialog(null, "Data saved");
+
+        }
     }//GEN-LAST:event_kGradientPanel2MouseClicked
 
     private void kGradientPanel2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kGradientPanel2KeyPressed
