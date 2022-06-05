@@ -1,4 +1,4 @@
-# SchoolManagementSystem
+# School Management System
 ### This is a Java program to School Management System it is a GUI program by java jframe  and use a Json file.
 ## Features:
 1. The program should allow employee to sign-up and sign-in (with
